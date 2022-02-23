@@ -8,6 +8,7 @@ import com.google.gson.stream.JsonReader;
 import org.ejml.data.Matrix;
 import org.ejml.simple.SimpleOperations;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,42 +18,27 @@ import java.io.IOException;
  */
 public class FileReaderAndWriter {
 
-    public static void writeToFile(NeuralNetwork nn, String fileName){
-        String name = fileName;
-
-        if (fileName == null) {
-            name = "nn_data";
-        }
-
+    public static void writeToFile(NeuralNetwork nn, File file) {
         try {
-            FileWriter file = new FileWriter(name + ".json");
+            FileWriter writer = new FileWriter(file);
             Gson gson = getGsonBuilder().create();
             String nnData = gson.toJson(nn);
 
-            file.write(nnData);
-            file.flush();
+            writer.write(nnData);
+            writer.flush();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
-    public static NeuralNetwork readFromFile(String fileName) {
-        NeuralNetwork nn = null;
-        String name = fileName;
-
-        if (fileName == null) {
-            name = "nn_data.json";
-        }
-
+    public static NeuralNetwork readFromFile(File file) {
         try {
             Gson gson = getGsonBuilder().create();
-            JsonReader jsonReader = new JsonReader(new FileReader(name));
-            nn = gson.fromJson(jsonReader, NeuralNetwork.class);
+            JsonReader jsonReader = new JsonReader(new FileReader(file));
+            return gson.fromJson(jsonReader, NeuralNetwork.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-
-        return nn;
     }
 
     // Get a GsonBuilder-object with all the needed TypeAdapters added

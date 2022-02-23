@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kim-marcel.basic_neural_network</groupId>
+    <groupId>basic_neural_network</groupId>
     <artifactId>basic_neural_network</artifactId>
-    <version>v0.5</version>
+    <version>v0.6</version>
 
     <build>
         <plugins>

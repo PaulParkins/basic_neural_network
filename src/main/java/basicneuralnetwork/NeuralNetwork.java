@@ -1,10 +1,12 @@
 package basicneuralnetwork;
 
-import basicneuralnetwork.activationfunctions.*;
+import basicneuralnetwork.activationfunctions.ActivationFunction;
+import basicneuralnetwork.activationfunctions.ActivationFunctionFactory;
 import basicneuralnetwork.utilities.FileReaderAndWriter;
 import basicneuralnetwork.utilities.MatrixUtilities;
 import org.ejml.simple.SimpleMatrix;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -15,7 +17,7 @@ public class NeuralNetwork {
 
     private ActivationFunctionFactory activationFunctionFactory = new ActivationFunctionFactory();
 
-    private Random random = new Random();
+    private transient Random random = new Random();
 
     // Dimensions of the neural network
     private int inputNodes;
@@ -254,20 +256,12 @@ public class NeuralNetwork {
                           : activationFunction.applyActivationFunctionToMatrix(input);
     }
 
-    public void writeToFile() {
-        FileReaderAndWriter.writeToFile(this, null);
+    public void writeToFile(File file) {
+        FileReaderAndWriter.writeToFile(this, file);
     }
 
-    public void writeToFile(String fileName) {
-        FileReaderAndWriter.writeToFile(this, fileName);
-    }
-
-    public static NeuralNetwork readFromFile() {
-        return FileReaderAndWriter.readFromFile(null);
-    }
-
-    public static NeuralNetwork readFromFile(String fileName) {
-        return FileReaderAndWriter.readFromFile(fileName);
+    public static NeuralNetwork readFromFile(File file) {
+        return FileReaderAndWriter.readFromFile(file);
     }
 
     public String getActivationFunctionName() {
