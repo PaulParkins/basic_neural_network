@@ -11,6 +11,7 @@ public interface ActivationFunction {
     String SIGMOID = "SIGMOID";
     String TANH = "TANH";
     String RELU = "RELU";
+    String LEAKY_RELU = "LeakyRELU";
 
     // Activation function
     SimpleMatrix applyActivationFunctionToMatrix(SimpleMatrix input);

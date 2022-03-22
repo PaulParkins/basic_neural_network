@@ -20,6 +20,9 @@ public class ActivationFunctionFactory {
 
         ActivationFunction relu = new ReLuActivationFunction();
         activationFunctionMap.put(relu.getName(), relu);
+
+        ActivationFunction leakyRelu = new LeakyReLuActivationFunction();
+        activationFunctionMap.put(leakyRelu.getName(), relu);
     }
 
     public ActivationFunction getActivationFunctionByKey (String activationFunctionKey) {
